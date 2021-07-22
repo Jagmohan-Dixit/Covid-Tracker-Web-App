@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="We will show you the latest updates about covid cases">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Tracker | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: rgb(27, 25, 54);
+        }
+        
+        h4 {
+            color: #f8f8f8;
+        }
+        
+        h3 {
+            color: #ffffff;
+        }
+        
+        h2 {
+            color: rgb(245, 245, 245);
+        }
+        
+        h1 {
+            color: rgb(253, 253, 253);
+        }
+        
+        div h2 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 40px;
+        }
+        
+        div h1 {
+            text-align: center;
+            /* padding-right: 0px; */
+            margin-right: 1px;
+            color: rgb(0, 104, 23);
+            font-weight: 700;
+            font-size: 60px;
+        }
+        
+        .india {
+            text-align: center;
+            font-weight: 400;
+            font-size: 40px;
+            color: crimson;
+            text-decoration-line: underline;
+        }
+        
+        .world {
+            text-align: center;
+            font-weight: 400;
+            font-size: 40px;
+            color: rgb(3, 169, 190);
+            text-decoration-line: underline;
+        }
+        
+        .country {
+            font-weight: 400;
+            font-size: 35px;
+            text-decoration-line: underline;
+        }
+        
+        form {
+            background-color: rgb(13, 13, 43);
+            width: 1520px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            float: center;
+        }
+        
+        #placeholder {
+            color: #fff;
+            opacity: 0.7;
+        }
+        
+        input {
+            all: unset;
+            font: 16px;
+            height: 100%;
+            width: 100%;
+            padding: 6px 10px;
+        }
+        
+        #currentDateTime {
+            color: #fff;
+            font: 20px;
+            block-size: 20px;
+            text-align: center;
+            align-items: center;
+        }
+        
+        .color1 {
+            background-color: blue;
+            color: rgb(255, 247, 247);
+        }
+        
+        .color2 {
+            background-color: rgb(2, 126, 50);
+            color: #fff;
+        }
+        
+        .color3 {
+            background-color: rgb(61, 60, 0);
+            color: rgb(255, 243, 243);
+        }
+        
+        .color4 {
+            background-color: rgb(8, 83, 8);
+            color: #fff;
+        }
+        
+        .color5 {
+            background-color: rgb(168, 5, 46);
+            color: #fff;
+        }
+        
+        .color6 {
+            background-color: rgb(190, 20, 125);
+            color: #fff;
+        }
+        
+        .number {
+            font-weight: 350;
+            font-size: 30px;
+            float: left;
+        }
+        
+        .tbl {
+            color: #fff;
+        }
+        
+        .time {
+            font-weight: 350;
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+
+<body class="p-3">
+
+    <div class="Background">
+        <div id="center">
+            <h1>Covid19 India</h1>
+            <br />
+        </div>
+    </div>
+
+
+    <form if="form" role="search">
+        <input type="search" id="query" name="jaggu" placeholder="Search your district or state...." aria-label="Search through site content"></form>
+
+
+    <!-- Current Date and Time -->
+
+    <input type="None" id="currentDateTime" class="time">
+    <br><br>
+    <script>
+        var today = new Date();
+        var ampm = today.getHours() >= 12 ? 'PM' : 'AM';
+        var hours = today.getHours() % 12;
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        today.toLocaleString('default', {
+            month: 'short'
+        })
+        var date = today.getDate() + ' ' + today.toLocaleString('default', {
+            month: 'short'
+        }) + ', ' + hours + ":" + today.getMinutes() + ' ' + ampm;
+        document.getElementById("currentDateTime").value = date;
+    </script>
+
+    <h2 class="border-rounded p-4 india">
+        <div class="display-8">Covid In India</div>
+    </h2>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for c in countries %} {% if c.Country == "India" %}
+            <div class="card col m-2 color5">
+                <div class="card-body">
+                    <h4 class="card-title">Active Cases</h4>
+                    <p class="card-text number">{% load mathfilters %}{{c.TotalConfirmed|sub:c.TotalRecovered |sub:c.TotalDeaths}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color1">
+                <div class="card-body">
+                    <h4 class="card-title">Today's Case</h4>
+                    <p class="card-text number">{{c.NewConfirmed}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color2">
+                <div class="card-body">
+                    <h4 class="card-title">Total Case</h4>
+                    <p class="card-text number">{{c.TotalConfirmed}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color3">
+                <div class="card-body">
+                    <h4 class="card-title">New Deaths</h4>
+                    <p class="card-text number">{{c.NewDeaths}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color4">
+                <div class="card-body">
+                    <h4 class="card-title">Total Deaths</h4>
+                    <p class="card-text number">{{c.TotalDeaths}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color5">
+                <div class="card-body">
+                    <h4 class="card-title">Today's Recovered</h4>
+                    <p class="card-text number">{{c.NewRecovered}}</p>
+                </div>
+            </div>
+            <div class="card col m-2 color6">
+                <div class="card-body">
+                    <h4 class="card-title">Total Recovered</h4>
+                    <p class="card-text number">{{c.TotalRecovered}}</p>
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+            <hr>
+            <hr>
+
+            <h2 class="border-rounded p-4 world">
+                <div class="display-8">World-wide Report of Covid</div>
+            </h2>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card col m-2 color5">
+                        <div class="card-body">
+                            <h4 class="card-title">Active Cases</h4>
+                            <p class="card-text number">{% load mathfilters %}{{globalsummary.TotalConfirmed|sub:globalsummary.TotalRecovered |sub:globalsummary.TotalDeaths}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color1">
+                        <div class="card-body">
+                            <h4 class="card-title">Today's Case</h4>
+                            <p class="card-text number">{{globalsummary.NewConfirmed}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color2">
+                        <div class="card-body">
+                            <h4 class="card-title">Total Case</h4>
+                            <p class="card-text number">{{globalsummary.TotalConfirmed}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color3">
+                        <div class="card-body">
+                            <h4 class="card-title">New Deaths</h4>
+                            <p class="card-text number">{{globalsummary.NewDeaths}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color4">
+                        <div class="card-body">
+                            <h4 class="card-title">Total Deaths</h4>
+                            <p class="card-text number">{{globalsummary.TotalDeaths}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color5">
+                        <div class="card-body">
+                            <h4 class="card-title">Today's Recovered</h4>
+                            <p class="card-text number">{{globalsummary.NewRecovered}}</p>
+                        </div>
+                    </div>
+                    <div class="card col m-2 color6">
+                        <div class="card-body">
+                            <h4 class="card-title">Total Recovered</h4>
+                            <p class="card-text number">{{globalsummary.TotalRecovered}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <hr>
+
+                    <h4 class="border-rounded p-4 country">
+                        <div class="display-8">Country wise Summary</div>
+                    </h4>
+                    <table class="table tbl">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Country</th>
+                                <th>Today's Case</th>
+                                <th>Total Case</th>
+                                <th>Today's Deaths</th>
+                                <th>Total Deaths</th>
+                                <th>Today's Recovered</th>
+                                <th>Total Recovered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in countries %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{c.Country}}</td>
+                                <td>{{c.NewConfirmed}}</td>
+                                <td>{{c.TotalConfirmed}}</td>
+                                <td>{{c.NewDeaths}}</td>
+                                <td>{{c.TotalDeaths}}</td>
+                                <td>{{c.NewRecovered}}</td>
+                                <td>{{c.TotalRecovered}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+</body>
+
+</html>
